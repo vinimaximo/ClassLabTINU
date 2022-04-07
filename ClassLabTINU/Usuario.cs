@@ -14,6 +14,7 @@ namespace ClassLabTINU
         private int id;
         private string nome;
         private string email;
+        private Nivel nivel;
         private string password;
         private bool ativo;
 
@@ -30,6 +31,7 @@ namespace ClassLabTINU
             }
 
         }
+        public Nivel Nivel { get { return nivel; } }
         public bool Ativo { get { return ativo; } set { ativo = value; } }
 
 
@@ -38,11 +40,12 @@ namespace ClassLabTINU
         {
 
         }
-        public Usuario(string nome, string email, string password)
+        public Usuario(string nome, string email, Nivel nivel, string password)
         {
             this.nome = nome;
             this.email = email;
             this.password = password;
+            this. nivel = nivel;
             ativo = true;
         }
 
@@ -52,6 +55,7 @@ namespace ClassLabTINU
             this.nome = nome;
             this.email = email;
             this.password = password;
+            this. nivel = nivel;
             this.ativo = ativo;
         }
         // métodos da classe
