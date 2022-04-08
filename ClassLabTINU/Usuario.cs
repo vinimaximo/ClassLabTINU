@@ -8,7 +8,7 @@ namespace ClassLabTINU
 {
 
 
-    internal class Usuario
+    public class Usuario
     {
         // atributos (campos)
         private int id;

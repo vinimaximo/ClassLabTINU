@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLabTINU
 {
-    internal class ItemPedido
+    public class ItemPedido
     {
         //iped_ip idprod_ip valor quantidade desconto
         //Atributos 
