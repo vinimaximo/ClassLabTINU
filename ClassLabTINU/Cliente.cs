@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ClassLabTINU
 {            
@@ -15,6 +16,7 @@ namespace ClassLabTINU
         private string email;
         private DateTime dataCad;
         private bool ativo;
+        
 
         //propriedades
         public int ID { get { return id; } set { id = value; } }
@@ -53,9 +55,16 @@ namespace ClassLabTINU
 
 
         //métodos da classe
-        public void inserir(Cliente cliente)
+         public void inserir()
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_cliente_inserir";
+            cmd.Parameters.AddWithValue("_nome",Nome);
+            cmd.Parameters.AddWithValue("_cpf", Cpf);
+            cmd.Parameters.AddWithValue("_email", Email);
+            ID = Convert.ToInt32 (cmd.ExecuteScalar());
+            cmd.Connection.Close();
         }
         public bool alterar (Cliente cliente)
         {
@@ -70,11 +79,25 @@ namespace ClassLabTINU
         public static List<Cliente> Listar()
         {
             List<Cliente> clientes = new List<Cliente>();
-            //cena dos proximos espisódios
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes order by nome";
+            var dr = cmd.ExecuteReader();   
+            while (dr.Read())
+            {
+                clientes.Add(new Cliente(
+                   dr.GetInt32(0),
+                   dr.GetString(1),
+                   dr.GetString(2),
+                   dr.GetString(3),
+                   dr.GetDateTime(4),
+                   dr.GetBoolean(5)
+                    ));
+            }
             return clientes;
         }
         
-
+        
 
 
     }

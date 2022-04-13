@@ -17,20 +17,23 @@ namespace ClassLabTINU
         public int ID { get { return id; } }
         public string Nome { get { return nome;} private set { nome = value; } }
         public string Sigla { get { return sigla; } }
-        
-        
-        //Métodos contrutores
-        
+
+
+        // Métodos Construtores
         public Nivel()
         {
         }
 
-        public Nivel(string nome, string sigla, bool ativo)
+
+
+        public Nivel(string nome, string sigla)
         {
             this.nome = nome;
             this.sigla = sigla;
-            this.ativo = ativo;
+            ativo = true;
         }
+
+
 
         public Nivel(int id, string nome, string sigla, bool ativo)
         {
