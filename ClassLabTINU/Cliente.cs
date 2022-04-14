@@ -73,8 +73,7 @@ namespace ClassLabTINU
         public static Cliente consultarPorID(int _id) 
         {
             Cliente cliente = new Cliente();
-                //cena dos proximos episódios...
-           return cliente;
+            return cliente;
         }
         public static List<Cliente> Listar()
         {

@@ -1,6 +1,6 @@
 ﻿namespace ComercialSys91
 {
-    partial class Form1
+    partial class FrmCliente
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -48,6 +48,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(161, 20);
             this.txtNome.TabIndex = 0;
+            
             // 
             // txtCpf
             // 
@@ -138,7 +139,7 @@
             this.btnlListar.UseVisualStyleBackColor = true;
             this.btnlListar.Click += new System.EventHandler(this.btnlListar_Click);
             // 
-            // Form1
+            // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -154,7 +155,7 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtNome);
-            this.Name = "Form1";
+            this.Name = "FrmCliente";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

@@ -11,9 +11,9 @@ using ClassLabTINU;
 
 namespace ComercialSys91
 {
-    public partial class Form1 : Form
+    public partial class FrmCliente : Form
     {
-        public Form1()
+        public FrmCliente()
         {
             InitializeComponent();
         }
@@ -55,6 +55,8 @@ namespace ComercialSys91
                 lstclientes.Items.Add(cliente.ID + "-" + cliente.Nome);
             }
         }
+
+       
     }
 }
 
