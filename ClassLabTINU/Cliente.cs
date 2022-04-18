@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace ClassLabTINU
 {            
@@ -66,13 +67,67 @@ namespace ClassLabTINU
             ID = Convert.ToInt32 (cmd.ExecuteScalar());
             cmd.Connection.Close();
         }
-        public bool alterar (Cliente cliente)
+        public bool alterar (int _id, string _nome, string _email )
         {
-            return true;
+            bool resultado = false;
+            try
+            {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                // recebe o nome da procedure
+                cmd.CommandText = "sp_cliente_alterar ";
+                // recebe os paremetros da procedure - lá do Mysql
+               // cmd.Parameters.Add("_id",MySqlDbType.Int32).Value = _id;
+                cmd.Parameters.AddWithValue("_id", _id);
+                cmd.Parameters.AddWithValue("_nome", _nome);
+                cmd.Parameters.AddWithValue("_email", _email);
+                cmd.ExecuteNonQuery();
+                resultado = true;
+                cmd.Connection.Close();
+            }
+            catch
+            {
+                
+            }
+            return resultado;
+            
         }
         public static Cliente consultarPorID(int _id) 
         {
             Cliente cliente = new Cliente();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes where idcli = " + _id;
+              MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                cliente.ID = Convert.ToInt32(dr["idcli"]);
+                cliente.nome = dr ["nome"].ToString();
+                cliente.cpf = dr.GetString(2);
+                     cliente.email = dr.GetString(3);
+                cliente.dataCad = dr.GetDateTime(4);
+                cliente.ativo = dr.GetBoolean(5);
+
+            }
+            return cliente;
+        }
+        public static Cliente consultarPorCpf(string _cpf)
+        {
+            Cliente cliente = new Cliente();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes where idcli = " + _cpf;
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                cliente.ID = Convert.ToInt32(dr["ID"]);
+                cliente.nome = dr["nome"].ToString();
+                cliente.cpf = dr.GetString(2);
+                cliente.email = dr.GetString(3);
+                cliente.dataCad = dr.GetDateTime(4);
+                cliente.ativo = dr.GetBoolean(5);
+
+            }
             return cliente;
         }
         public static List<Cliente> Listar()
@@ -80,7 +135,7 @@ namespace ClassLabTINU
             List<Cliente> clientes = new List<Cliente>();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from clientes order by nome";
+            cmd.CommandText = "select * from clientes where ativo = 1 order by nome";
             var dr = cmd.ExecuteReader();   
             while (dr.Read())
             {
@@ -95,8 +150,16 @@ namespace ClassLabTINU
             }
             return clientes;
         }
-        
-        
+        public void Desativar(int _id)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update clientes set ativo = 0 where idcli = " + _id;
+            cmd.ExecuteReader();
+            cmd.Connection.Close();
+        }
+
+
 
 
     }
