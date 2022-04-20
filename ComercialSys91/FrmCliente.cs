@@ -41,10 +41,7 @@ namespace ComercialSys91
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnlListar_Click(object sender, EventArgs e)
         {
@@ -116,6 +113,21 @@ namespace ComercialSys91
             {
                 MessageBox.Show("Falha na alteração do Cliente!");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

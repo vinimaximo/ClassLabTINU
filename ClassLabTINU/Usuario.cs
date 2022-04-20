@@ -12,68 +12,65 @@ namespace ClassLabTINU
     public class Usuario
     {
         // atributos (campos)
-        private int id;
-        private string nome;
-        private string email;
-        private Nivel nivel;
-        private string password;
-        private bool ativo;
+        private int Id { set; get; }
+        private string Nome { set; get; }
+        private string Email { set; get; }
+        private Nivel Nivel { set; get; }
+        private string Senha { set; get; }
+        private bool Ativo { set; get; }
 
-        // propriedades
-        public int Id { get => id; set => id = value; }
-        public string Nome { get { return nome; } }
-        public string Email { get { return email; } set { email = value; } }
-        public string Password
-        {
-            get
-            {
-                // restrições
-                return password;
-            }
-
-        }
-        public Nivel Nivel { get { return nivel; } }
-        public bool Ativo { get { return ativo; } set { ativo = value; } }
-
-        
-
+       
 
         // métodos Construtores
         public Usuario()
         {
         }
 
-        public Usuario(string nome, string cpf, string email)
+        public Usuario(int id, string nome, string email,  string senha)
         {
-            nome = nome;
-            password = cpf;
+            Id = id;
+            Nome = nome;
+            Email = email;
+            
+            Senha = senha;
+        }
+
+        public Usuario(string nome, string email, string senha)
+        {
+            Nome = nome;
+            Senha = senha;
             Email = email;
             //dataCad = DateTime.Now;
             //ativo = true;
         }
 
-        public Usuario(string nome, string email, Nivel nivel, string password)
+        public Usuario(string nome, string email, Nivel nivel, string senha)
         {
-            this.nome = nome;
-            this.email = email;
-            this.nivel = nivel;
-            this.password = password;
+            this.Nome = nome;
+            this.Email = email;
+            this.Nivel = nivel;
+            this.Senha = senha;
         }
 
-        public Usuario(int iD, string nome, string cpf, string email, DateTime dataCad, bool ativo)
+        public Usuario(int iD, string nome, string senha, string email, bool ativo)
         {
-            id = iD;
-            nome = nome;
-            password = cpf;
+            Id = iD;
+            Nome = nome;
+            Senha = senha;
             Email = email;
-            dataCad = dataCad;
             Ativo = ativo;
         }
         // métodos da classe
-        public int Inserir()
+        public void Inserir()
         {
-            // chamadas de banco e gravo o registro
-            return id;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "usuarios_inserir";
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_senha", Senha);
+            cmd.Parameters.AddWithValue("_email", Email);
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
         }
         public static bool EfetuarLogin(string email, string senha)
         {
@@ -88,17 +85,37 @@ namespace ClassLabTINU
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_usuario_inserir";
+            cmd.CommandText = "usuarios_inserir";
             cmd.Parameters.AddWithValue("_nome", Nome);
-            cmd.Parameters.AddWithValue("_password", password );
+            cmd.Parameters.AddWithValue("_senha", Senha );
             cmd.Parameters.AddWithValue("_email", Email);
-            
-            id = Convert.ToInt32(cmd.ExecuteScalar());
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
             cmd.Connection.Close();
         }
-        public bool alterar(Usuario usuario)
+        public bool alterar(int _id, string _nome,  string _senha, string _email)
         {
-            return true;
+            bool resultado = false;
+            try
+            {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                // recebe o nome da procedure
+                cmd.CommandText = "alterar_usuarios";
+                // recebe os paremetros da procedure - lá do Mysql
+                // cmd.Parameters.Add("_id",MySqlDbType.Int32).Value = _id;
+                cmd.Parameters.AddWithValue("_id", _id);
+                cmd.Parameters.AddWithValue("_nome", _nome);
+                cmd.Parameters.AddWithValue("_email", _email);
+                cmd.Parameters.AddWithValue("_email", _senha);
+                cmd.ExecuteNonQuery();
+                resultado = true;
+                cmd.Connection.Close();
+            }
+            catch
+            {
+
+            }
+            return resultado;
         }
         public static Usuario consultarPorID(int _id)
         {
@@ -119,7 +136,6 @@ namespace ClassLabTINU
                    dr.GetString(1),
                    dr.GetString(2),
                    dr.GetString(3),
-                   dr.GetDateTime(4),
                    dr.GetBoolean(5)
                     ));
             }

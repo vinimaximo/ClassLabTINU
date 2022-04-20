@@ -61,6 +61,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(258, 20);
             this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // txtCpf
             // 
@@ -85,6 +86,7 @@
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(31, 20);
             this.txtID.TabIndex = 3;
+            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // label1
             // 
@@ -216,7 +218,6 @@
             this.dgvClientes.RowHeadersVisible = false;
             this.dgvClientes.Size = new System.Drawing.Size(455, 150);
             this.dgvClientes.TabIndex = 17;
-            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // clnId
             // 

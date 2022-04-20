@@ -40,5 +40,10 @@ namespace ComercialSys91
             frmUsuario.Show();
             
         }
+
+        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

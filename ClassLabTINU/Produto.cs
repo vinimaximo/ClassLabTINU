@@ -11,59 +11,51 @@ namespace ClassLabTINU
      public class Produto
     {
         //atributos
-        private int id;
-        private string descrição;
-        private string unidade;
-        private string codbar;
-        private double valor;
-        private double desconto;
-        private bool descontinuado;
-
+        private int Id { get; set; }
+        private string Descrição { get; set; }
+        private string Unidade { get; set; }
+        private string Codbar { get; set; }
+        private double Valor { get; set; }
+        private double Desconto { get; set; }
+        private bool Descontinuado { get; set; }
         //propriedades
-        public int ID { get { return id; } set { id = value; } }
-        public string Descrição { get { return descrição; } set { descrição = value; } }
-        public string Unidade { get { return unidade; } set { unidade = value; } }
-        public string Codbar { get { return codbar; } set { codbar = value; } }
-        public double Valor { get { return valor; } set { valor = value; } }
-        private double Desconto { get { return desconto; } set { desconto = value; } }
-        public bool Descontinuado { get => descontinuado; }
 
         // Construtores 
 
-        public Produto()
-        {
-        }
 
-        public Produto(int id, string descricao, string unidade, string codbar, double valor, double desconto, bool descontinuado)
-        {
-            id = id;
-            this.Descrição = descricao;
-            this.unidade = unidade;
-            this.codbar = codbar;
-            this.valor = valor;
-            this.desconto = desconto;
-            this.descontinuado = descontinuado;
-        }
+
+
 
         public Produto(int id, string descricao, string unidade, string codbar, double valor)
         {
-            id = this.id;
+            Id = id;
             this.Descrição = descricao;
-            this.unidade = unidade;
-            this.codbar = codbar;
-            this.valor = valor;
+            this.Unidade = unidade;
+            this.Codbar = codbar;
+            this.Valor = valor;
+          
         }
 
 
         public Produto(string descricao, string unidade, string codbar, double valor, double desconto)
         {
             this.Descrição = descricao;
-            this.unidade = unidade;
-            this.codbar = codbar;
-            this.valor = valor;
-            this.desconto = desconto;
+            this.Unidade = unidade;
+            this.Codbar = codbar;
+            this.Valor = valor;
+            this.Desconto = desconto;
+            
         }
-
+        public Produto(int id, string descricao, string unidade, string codbar, double valor, double desconto, bool descontinuado)
+        {
+            Id = id;
+            this.Descrição = descricao;
+            this.Unidade = unidade;
+            this.Codbar = codbar;
+            this.Valor = valor;
+            this.Desconto = desconto;
+            this.Descontinuado = descontinuado;
+        }
 
 
 
@@ -84,36 +76,13 @@ namespace ClassLabTINU
             banco.Parameters.AddWithValue("_codbar", Codbar);
             banco.Parameters.AddWithValue("_valor", Valor);
             banco.Parameters.AddWithValue("_desconto", Desconto);
-            id = Convert.ToInt32(banco.ExecuteScalar());
+            Id = Convert.ToInt32(banco.ExecuteScalar());
 
             // Fecha Conexão
             banco.Connection.Close();
 
         }
 
-        public void Alterar(Produto Produto)
-        {
-
-        }
-
-        public void ConsultarPorId(int _id)
-        {
-
-        }
-
-        public void ConsultarPorValor(int _valor)
-        {
-        }
-
-        public List<Produto> ConsultarPorDescricao(string _descricao)
-        {
-            List<Produto> lista = new List<Produto>();
-            return lista;
-        }
-
-        public void ConsultarPorCodbar(int _codbar)
-        {
-        }
 
         public List<Produto> ListarTodos(int i = 0, int l = 0)
         {
@@ -137,14 +106,14 @@ namespace ClassLabTINU
             while (dr.Read())
             {
                 lista.Add(new Produto(
-                    Convert.ToInt32(dr.GetValue(0)), 
-                    dr.GetString(1), 
-                    dr.GetString(2), 
-                    dr.GetString(3), 
-                    dr.GetDouble(4), 
-                    dr.GetDouble(5), 
-                     dr.GetBoolean(6) 
-                    ));
+                    Convert.ToInt32(dr.GetValue(0)),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetDouble(4),
+                    dr.GetDouble(5),
+                    dr.GetBoolean(6)
+                   ));
             }
 
             // Fecha Conexão
@@ -153,6 +122,9 @@ namespace ClassLabTINU
             // Retornando lista
             return lista;
         }
+
+
+
 
 
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cclientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +56,11 @@
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "&Cadastros";
+            this.cadastrosToolStripMenuItem.Click += new System.EventHandler(this.cadastrosToolStripMenuItem_Click);
             // 
             // cclientesToolStripMenuItem
             // 
+            this.cclientesToolStripMenuItem.Image = global::ComercialSys91.Properties.Resources.Users;
             this.cclientesToolStripMenuItem.Name = "cclientesToolStripMenuItem";
             this.cclientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cclientesToolStripMenuItem.Text = "C&lientes";
@@ -65,12 +68,14 @@
             // 
             // produtosToolStripMenuItem
             // 
+            this.produtosToolStripMenuItem.Image = global::ComercialSys91.Properties.Resources.Shopping_cart;
             this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
             this.produtosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.produtosToolStripMenuItem.Text = "P&rodutos";
             // 
             // usuarioToolStripMenuItem
             // 
+            this.usuarioToolStripMenuItem.Image = global::ComercialSys91.Properties.Resources.User;
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
             this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuarioToolStripMenuItem.Text = "U&suario";
@@ -82,10 +87,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmPrincipal";
-            this.Text = "FrmPrincipal";
+            this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load_1);
             this.menuStrip1.ResumeLayout(false);
