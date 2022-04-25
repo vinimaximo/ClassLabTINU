@@ -65,5 +65,10 @@ namespace ComercialSys91
                 MessageBox.Show("Falha na alteração do Usuario!");
             }
         }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

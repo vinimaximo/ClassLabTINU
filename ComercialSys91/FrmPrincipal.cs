@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using ClassLabTINU;
 
 namespace ComercialSys91
 {
@@ -42,6 +44,18 @@ namespace ComercialSys91
         }
 
         private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPedidos frmPedidos = new FrmPedidos();
+            frmPedidos.MdiParent = this;
+            frmPedidos.Show();
+        }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
