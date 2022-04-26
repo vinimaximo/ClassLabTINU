@@ -107,7 +107,7 @@ namespace ComercialSys91
             Cliente cliente = new Cliente();
             if (cliente.alterar(int.Parse(txtID.Text), txtNome.Text, txtEmail.Text))
             {
-                MessageBox.Show("Cliente alterado com sucesso!");
+                MessageBox.Show("Cliente alterado com Sucesso!");
             }
             else
             {
@@ -126,6 +126,11 @@ namespace ComercialSys91
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

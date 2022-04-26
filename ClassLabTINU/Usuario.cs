@@ -12,16 +12,21 @@ namespace ClassLabTINU
     public class Usuario
     {
         // atributos (campos)
-        private int Id { set; get; }
-        private string Nome { set; get; }
-        private string Email { set; get; }
-        private Nivel Nivel { set; get; }
-        private string Senha { set; get; }
-        private bool Ativo { set; get; }
+        public int Id { set; get; }
+        public string Nome { set; get; }
+        public string Email { set; get; }
+        public int Nivel { set; get; }
+        public string Senha { set; get; }
+        public bool Ativo { set; get; }
 
        
 
         // métodos Construtores
+
+
+
+
+
         public Usuario()
         {
         }
@@ -31,7 +36,6 @@ namespace ClassLabTINU
             Id = id;
             Nome = nome;
             Email = email;
-            
             Senha = senha;
         }
 
@@ -44,7 +48,7 @@ namespace ClassLabTINU
             //ativo = true;
         }
 
-        public Usuario(string nome, string email, Nivel nivel, string senha)
+        public Usuario(string nome, string email, int nivel, string senha)
         {
             this.Nome = nome;
             this.Email = email;
@@ -52,13 +56,23 @@ namespace ClassLabTINU
             this.Senha = senha;
         }
 
-        public Usuario(int iD, string nome, string senha, string email, bool ativo)
+        public Usuario(int id, string nome, string senha, string email, bool ativo)
         {
-            Id = iD;
+            Id = id;
             Nome = nome;
             Senha = senha;
             Email = email;
             Ativo = ativo;
+        }
+         public Usuario(int id, string nome, string senha, string email, bool ativo, int nivel )
+        {
+            Id = id;
+            Nome = nome;
+            Senha = senha;
+            Email = email;
+            Nivel = nivel;  
+            Ativo = ativo;
+
         }
         // métodos da classe
         public void Inserir()
@@ -135,8 +149,8 @@ namespace ClassLabTINU
                    dr.GetInt32(0),
                    dr.GetString(1),
                    dr.GetString(2),
-                   dr.GetString(3),
-                   dr.GetBoolean(5)
+                   dr.GetString(3)
+                 
                     ));
             }
             return usuarios;

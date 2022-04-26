@@ -48,16 +48,18 @@ namespace ComercialSys91
 
         }
 
-        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmPedidos frmPedidos = new FrmPedidos();
-            frmPedidos.MdiParent = this;
-            frmPedidos.Show();
-        }
+        
 
         private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void novoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmPedidos frmPedidos = new FrmPedidos();
+            frmPedidos.MdiParent = this;
+            frmPedidos.Show();
         }
     }
 }

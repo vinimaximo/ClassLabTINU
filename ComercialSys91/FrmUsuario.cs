@@ -24,15 +24,18 @@ namespace ComercialSys91
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            Usuario u = new Usuario(
-               Convert.ToInt32 (txtId.Text),
-                 txtNome.Text,
-                 txtEmail.Text,
-                 txtSenha.Text
-                 );
-               u.inserir();
+            Usuario usuario = new Usuario(txtNome.Text, txtSenha.Text, txtEmail.Text);
+            usuario.Inserir();
+            if (usuario.Id > 0)
+            {
+                txtId.Text = usuario.Id.ToString();
+                MessageBox.Show("Usuario gravado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show("Falha ao inserir usuario");
+            }
 
-            
         }
 
 
@@ -45,7 +48,19 @@ namespace ComercialSys91
 
         private void btnlLisar_Click(object sender, EventArgs e)
         {
+            dgvUsuarios.Rows.Clear();
+            List<Usuario> ListaDeUsuarios = Usuario.Listar();
+            int cont = 0;
+            foreach (Usuario usuario in ListaDeUsuarios)
+            {
+                dgvUsuarios.Rows.Add();
+                dgvUsuarios.Rows[cont].Cells[0].Value = usuario.Id.ToString();
+                dgvUsuarios.Rows[cont].Cells[1].Value = usuario.Nome.ToString();
+                dgvUsuarios.Rows[cont].Cells[2].Value = usuario.Senha.ToString();
+                dgvUsuarios.Rows[cont].Cells[3].Value = usuario.Email.ToString();
+                cont++;
 
+            }
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

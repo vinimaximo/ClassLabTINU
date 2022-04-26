@@ -69,6 +69,7 @@
             this.txtSenha.Location = new System.Drawing.Point(102, 83);
             this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(87, 20);
             this.txtSenha.TabIndex = 3;
             // 
@@ -150,7 +151,7 @@
             this.dgvUsuarios.Location = new System.Drawing.Point(64, 203);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
-            this.dgvUsuarios.Size = new System.Drawing.Size(387, 128);
+            this.dgvUsuarios.Size = new System.Drawing.Size(474, 128);
             this.dgvUsuarios.TabIndex = 11;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
