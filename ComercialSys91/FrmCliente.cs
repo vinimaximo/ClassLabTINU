@@ -20,33 +20,33 @@ namespace ComercialSys91
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-        }     
-      
+
+        }
+
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
             Cliente c = new Cliente(txtNome.Text, txtCpf.Text, txtEmail.Text);
             c.inserir();
-            if (c.ID>0)
+            if (c.ID > 0)
             {
-             txtID.Text = c.ID.ToString();
-             MessageBox.Show("Cliente gravado com sucesso!");
+                txtID.Text = c.ID.ToString();
+                MessageBox.Show("Cliente gravado com sucesso!");
             }
             else
             {
                 MessageBox.Show("Cliente não foi gravado no sistema.");
             }
-           
+
 
         }
 
-        
+
 
         private void btnlListar_Click(object sender, EventArgs e)
         {
             dgvClientes.Rows.Clear();
-            List <Cliente> ListaDeClientes = Cliente.Listar();
+            List<Cliente> ListaDeClientes = Cliente.Listar();
             int cont = 0;
             foreach (Cliente cliente in ListaDeClientes)
             {
@@ -72,16 +72,16 @@ namespace ComercialSys91
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(btnBuscar.Text == "...")
+            if (btnBuscar.Text == "...")
             {
-             txtID.ReadOnly = false;
-             txtID.Focus();
-             btnBuscar.Text = "Buscar";
+                txtID.ReadOnly = false;
+                txtID.Focus();
+                btnBuscar.Text = "Buscar";
             }
             else
             {
                 Cliente cliente = Cliente.consultarPorID(int.Parse(txtID.Text));
-                if(cliente.ID > 0)
+                if (cliente.ID > 0)
                 {
                     txtNome.Text = cliente.Nome.ToString();
                     txtCpf.Text = cliente.Cpf.ToString();
@@ -90,7 +90,7 @@ namespace ComercialSys91
                     chkAtivo.Checked = cliente.Ativo;
 
                     btnBuscar.Text = "...";
-                    txtID.ReadOnly=true;
+                    txtID.ReadOnly = true;
                     btnAlterar.Enabled = true;
 
                 }
@@ -99,7 +99,7 @@ namespace ComercialSys91
                     MessageBox.Show("Esse código de cliente não existe!");
                 }
             }
-           
+
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -134,6 +134,21 @@ namespace ComercialSys91
         {
 
         }
-    }
+
+        private void txtCep_Click(object sender, EventArgs e)
+        { 
+        }
+
+        private void txtCep_Leave(object sender, EventArgs e)
+        {
+            CEP webCep = new CEP(txtCep.Text);
+            txt_bairro.Text = webCep.Bairro;
+            txtLogadouro.Text = webCep.Logradouro;
+            txtCidade.Text = webCep.Cidade;
+            txtComplemento.Text = txtComplemento.Text;
+            txtNumero.Text = txtNumero.Text;
+            txtUf.Text = webCep.UF;
+        }
+    }   
 }
 

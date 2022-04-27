@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco.cs" />
+    <Compile Include="CEP.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ItemPedido.cs" />
     <Compile Include="Nivel.cs" />
