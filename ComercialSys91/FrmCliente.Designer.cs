@@ -230,7 +230,7 @@
             this.clnCpf,
             this.clnEmail,
             this.clnAtivo});
-            this.dgvClientes.Location = new System.Drawing.Point(345, 299);
+            this.dgvClientes.Location = new System.Drawing.Point(15, 327);
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.RowHeadersVisible = false;
@@ -625,7 +625,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(958, 553);
             this.Controls.Add(this.txtTipo);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);

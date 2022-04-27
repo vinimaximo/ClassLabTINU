@@ -33,6 +33,8 @@ namespace ComercialSys91
                
         private void FrmPrincipal_Load_1(object sender, EventArgs e)
         {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.ShowDialog();
 
         }
 

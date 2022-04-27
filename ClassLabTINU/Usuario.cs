@@ -19,7 +19,7 @@ namespace ClassLabTINU
         public string Senha { set; get; }
         public bool Ativo { set; get; }
 
-       
+
 
         // métodos Construtores
 
@@ -31,7 +31,7 @@ namespace ClassLabTINU
         {
         }
 
-        public Usuario(int id, string nome, string email,  string senha)
+        public Usuario(int id, string nome, string email, string senha)
         {
             Id = id;
             Nome = nome;
@@ -64,13 +64,13 @@ namespace ClassLabTINU
             Email = email;
             Ativo = ativo;
         }
-         public Usuario(int id, string nome, string senha, string email, bool ativo, int nivel )
+        public Usuario(int id, string nome, string senha, string email, bool ativo, int nivel)
         {
             Id = id;
             Nome = nome;
             Senha = senha;
             Email = email;
-            Nivel = nivel;  
+            Nivel = nivel;
             Ativo = ativo;
 
         }
@@ -89,9 +89,13 @@ namespace ClassLabTINU
         public static bool EfetuarLogin(string email, string senha)
         {
 
+           //Realiza validação e devolve verdadeiro ou falso
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from usuarios where email = '" + email + "' and senha =  md5('" + senha + "')";
+            var dr = cmd.ExecuteReader();
+            return dr.Read();
 
-            // realiza validação e devolve verdadeiro ou falso
-            return false;
+           
         }
 
         //métodos da classe
@@ -101,12 +105,12 @@ namespace ClassLabTINU
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "usuarios_inserir";
             cmd.Parameters.AddWithValue("_nome", Nome);
-            cmd.Parameters.AddWithValue("_senha", Senha );
+            cmd.Parameters.AddWithValue("_senha", Senha);
             cmd.Parameters.AddWithValue("_email", Email);
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             cmd.Connection.Close();
         }
-        public bool alterar(int _id, string _nome,  string _senha, string _email)
+        public bool alterar(int _id, string _nome, string _senha, string _email)
         {
             bool resultado = false;
             try
@@ -150,16 +154,22 @@ namespace ClassLabTINU
                    dr.GetString(1),
                    dr.GetString(2),
                    dr.GetString(3)
-                 
+
                     ));
             }
             return usuarios;
 
+           
 
 
 
 
 
+        }
+        
 
-        }    }
+
+
+
+    }
 }
